@@ -6,6 +6,6 @@
   :license  "Specify license here"
   :version "0.0.1"
   :serial t
-  :depends-on (#:swank #:cl-base64)
+  :depends-on (#:swank #:cl-base64 #:flexi-streams)
   :components ((:file "package")
                (:file "swank-image")))
