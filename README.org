@@ -1,8 +1,49 @@
 * Swank Image
 
-Little helper library to show images in the slime-repl.  This allows things like this:
+** Setup
 
-#+attr_html: :width 100px
+This requires that on the emacs side the slime contrib =slime-media= is loaded.
+In your emacs configuration file (=.emacs= or =init.el=) there is probably an expression
+like this:
+
+#+begin_src lisp
+  (slime-setup '(slime-repl slime-fancy
+		 slime-asdf slime-sbcl-exts
+		 slime-highlight-edits slime-media))
+#+end_src
+
+Make sure that this contains =slime-media=.
+
+On the common lisp side, make sure you load this package
+
+#+begin_src lisp
+(require :swank-image)
+#+end_src
+
+** Usage
+
+Usage is quite simple, if there is code that can write a =.png= or =.svg= to a stream,
+it can write it the slime REPL.    So you can use for example the =vecto= package to create =.png= images:
+
+#+begin_src lisp
+  (require :vecto)
+  (swank-image:with-swank-image-stream (s)
+    (vecto:with-canvas (:width 100 :height 100)
+      (vecto:centered-circle-path 50 50 40)
+      (vecto:fill-path)
+      (vecto:save-png-stream s)))
+#+end_src
+
+Will create this:
+
+[[file:examples/repl-circle.png]]
+
+
+
+** Example
+
+Some more examples:
+
 [[file:examples/repl-images.png]]
 
 
