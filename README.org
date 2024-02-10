@@ -2,6 +2,7 @@
 
 Little helper library to show images in the slime-repl.  This allows things like this:
 
+#+attr_html: :width 100px
 [[file:examples/repl-images.png]]
 
 
